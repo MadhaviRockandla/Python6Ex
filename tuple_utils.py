@@ -7,32 +7,24 @@ def tic_tac_toe_finish(board: TicTacToeBoard, pos_y: int, pos_x: int, symbol: st
     """
     This function takes in a TicTacToeBoard and applies the finishing move based on the provided parameters pos_y,
     pos_x, and symbol.
-
     :param board: A tuple containing 3 TicTacToeRows. Each TicTacToeRow in turn is a list containing 3 strings
     :param pos_y: The position of the TicTacToeRow that needs to be modified
     :param pos_x: The position of the column within a TicTacToeRow that needs to be modified
     :param symbol: The symbol that should be placed in the column (X, or O)
     :return: None
     """
-    if symbol == 'X':
-        board[pos_y][pos_x] = 'X'
-    else:
-        board[pos_y][pos_x] = 'O'
+    board[pos_y][pos_x] = symbol
+    return board
 
 
 def count_instances(collection: Tuple, instance: Union[int, str]) -> int:
     """
     This function counts the number of occurrences of the instance value within the collection parameter.
-
     :param collection: A tuple containing 0 or more instances
     :param instance: An item in the collection parameter
     :return: An integer.
     """
-    count = 0
-    for i in collection:
-        if i == instance:
-            count += 1
-    return count
+    return collection.count(instance)
 
 
 def print_indexes_and_entries(indexes: Iterable, entries: Iterable) -> None:
@@ -40,14 +32,12 @@ def print_indexes_and_entries(indexes: Iterable, entries: Iterable) -> None:
     This function iterates through the given parameters and prints the items formatted according to the following rules:
     The index of the indexes iterable correspond to the index of the entries iterable.
     The index takes 10 places even if it doesn't need all 10 places.
-
     :param indexes: A list or tuple
     :param entries: A list or tuple
     :return: None
     """
-    for i, j in zip(indexes, entries):
-        lenEmpty = 11 - len(str(i))
-        print('Index: ' + str(i) + ' ' * lenEmpty + 'Entry: ' + str(j))
+    for i,j in zip(indexes, entries):
+        print(f'Index: {i!s:10} Entry: {j}')
 
 
 def print_items_with_index(items: Iterable):
@@ -59,6 +49,7 @@ def print_items_with_index(items: Iterable):
     :param items: A tuple or a list
     :return: None
     """
-    for index, value in enumerate(items):
-        print(str(index + 1) + ': ' + value)
+
+    for i, element in enumerate(items, start=1):
+        print(f'{i}: {element}')
 
